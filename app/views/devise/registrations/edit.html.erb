@@ -17,6 +17,11 @@
       <% end %>
 
       <div class="form-group col-6">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', placeholder: 'Current password(we need your current password to confirm your changes)' %>
+      </div>
+      <br/>
+
+      <div class="form-group col-6">
         <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: "New password (leave blank if you don't want to change it)" %>
         <% if @minimum_password_length %>
           <em><%= @minimum_password_length %> characters minimum</em>
@@ -26,11 +31,6 @@
 
       <div class="form-group col-6">
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: "Password confirmation" %>
-      </div>
-      <br/>
-
-      <div class="form-group col-6">
-        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', placeholder: 'Current password(we need your current password to confirm your changes)' %>
       </div>
       <br/><br/>
 

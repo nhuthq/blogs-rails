@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+#  helpers:
+#    submit:
+#      post:
+#        create: "Tạo blog"
+#        update: "Cập nhật blog"
