@@ -1,21 +1,37 @@
 <p style="color: green"><%= notice %></p>
 <% content_for :page_title, @post.title %>
-<section>
-  <h1><%= @post.title %></h1>
-  <h5><%= @post.published_at %></h5>
+<section class="section header'">
+  <div class="container">
+    <h1><%= @post.title %></h1>
+    <h5><%= @post.published_at %></h5>
 
-  <br/><br/>
+    <br/><br/>
 
-  <div class="col">
-    <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-primary' %>
-    <%= link_to "Delete", @post, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+    <div class="col">
+      <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-primary' %>
+      <%= link_to "Delete", @post, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+    </div>
   </div>
 </section>
 
 <hr/><br/>
 
-<section>
-  <%= @post.content %>
+<section class="section content">
+  <div class="container">
+    <%= @post.content %>
+  </div>
+</section>
+
+<br/>
+<hr/><br/>
+
+<section class="section comments">
+  <div class="container">
+    <h2><strong><%= @post.comments.count %></strong> Comments</h2>
+    <hr/><br/>
+    <%= render 'comments/index', post: @post %>
+    <%#= @post.comments.first.title %>
+  </div>
 </section>
 
 <br/>

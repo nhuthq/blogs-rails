@@ -2,25 +2,24 @@ class PostsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def index
     @posts = Post.all.order("created_at DESC")
   end
 
   def show
-
   end
 
   def edit
-
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_url, notice: "Post was successfully created." }
@@ -56,6 +55,11 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path, notice: 'You are not authorized to edit this post' if @post.nil?
   end
 
   def post_params
